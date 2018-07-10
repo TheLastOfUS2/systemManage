@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.systemManage.dao.base.FaCaMapper" >
+  <resultMap id="BaseResultMap" type="com.systemManage.pojo.base.FaCa" >
+    <id column="fa_ca_id" property="faCaId" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DOUBLE" />
+    <result column="base_info_id" property="baseInfoId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fa_ca_id, project_id, amount, base_info_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fa_ca
+    where fa_ca_id = #{faCaId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectBySelective" resultMap="BaseResultMap" parameterType="com.systemManage.pojo.base.FaCa">
+    SELECT
+    <include refid="Base_Column_List" />
+    from fa_ca
+    WHERE 1=1
+    <if test="faCaId != null" >
+      and fa_ca_id = #{faCaId,jdbcType=VARCHAR}
+    </if>
+    <if test="projectId != null" >
+      AND project_id = #{projectId,jdbcType=VARCHAR}
+    </if>
+    <if test="amount != null" >
+      AND amount = #{amount,jdbcType=DOUBLE}
+    </if>
+    <if test="baseInfoId != null" >
+      AND base_info_id = #{baseInfoId,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from fa_ca
+    where fa_ca_id = #{faCaId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.systemManage.pojo.base.FaCa" >
+    insert into fa_ca (fa_ca_id, project_id, amount, 
+      base_info_id)
+    values (#{faCaId,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, 
+      #{baseInfoId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.systemManage.pojo.base.FaCa" >
+    insert into fa_ca
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="faCaId != null" >
+        fa_ca_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="baseInfoId != null" >
+        base_info_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="faCaId != null" >
+        #{faCaId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="baseInfoId != null" >
+        #{baseInfoId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.systemManage.pojo.base.FaCa" >
+    update fa_ca
+    <set >
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="baseInfoId != null" >
+        base_info_id = #{baseInfoId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fa_ca_id = #{faCaId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.systemManage.pojo.base.FaCa" >
+    update fa_ca
+    set project_id = #{projectId,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DOUBLE},
+      base_info_id = #{baseInfoId,jdbcType=VARCHAR}
+    where fa_ca_id = #{faCaId,jdbcType=VARCHAR}
+  </update>
+  <select id="countByPid" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT count(*) FROM fa_ca WHERE project_id = #{projectId,jdbcType=VARCHAR}
+  </select>
+</mapper>
