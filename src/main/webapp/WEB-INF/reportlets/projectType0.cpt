@@ -79,7 +79,7 @@ order by rowNo ]]></Query>
 <CellElementList>
 <C c="0" r="0" cs="14" s="0">
 <O>
-<![CDATA[横向项目]]></O>
+<![CDATA[院内项目]]></O>
 <PrivilegeControl/>
 <Expand dir="0" order="1"/>
 </C>

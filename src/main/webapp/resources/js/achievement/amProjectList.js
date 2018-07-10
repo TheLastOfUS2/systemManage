@@ -57,7 +57,7 @@
 	var showTitle="";
 	function showTitleType(projectType){
 		if(projectType==0){
-			showTitle="横向项目"
+			showTitle="院内项目"
 		}else if(projectType==1){
 			showTitle="纵向项目"
 		}else if(projectType==2){
@@ -442,9 +442,9 @@
 		//获取搜索框中的内容
 		var getValue= $('#searchboxId').searchbox('getValue');
 		getValue=getValueFunction(getName, getValue);
-		// 横向项目
+		// 院内项目
 		if(projectType==0){
-			var url = "ReportServer?reportlet=projectType0.cpt&projectType=" + projectType + "&" + getName + "=" + getValue + "&format=excel&extype=simple&__filename__=" + cjkEncode("横向项目");
+			var url = "ReportServer?reportlet=projectType0.cpt&projectType=" + projectType + "&" + getName + "=" + getValue + "&format=excel&extype=simple&__filename__=" + cjkEncode("院内项目");
 			window.open(url);
 		// 纵向项目
 		}else if(projectType==1){

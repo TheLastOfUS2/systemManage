@@ -201,7 +201,7 @@ var third_menus = {
 		},
 	"b11": {
 		"menuid" : "b11",
-		"menuname" : "横向项目",
+		"menuname" : "院内项目",
 		"icon" : "icon-nav",
 		"url" : "project/toProjectList?projectType=0&menuid=b11"
 		},

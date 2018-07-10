@@ -258,7 +258,7 @@
 				for(var j=0;j<3;j++){
 					url = "project/toProjectList?projectType="+j+queryParam+"&menuid=b11";
 					if(j==0){
-						tabTitle="横向项目";
+						tabTitle="院内项目";
 					}else if(j==1){
 						tabTitle="纵向项目";
 					}else{
