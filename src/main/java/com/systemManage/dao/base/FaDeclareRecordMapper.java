@@ -27,4 +27,6 @@ public interface FaDeclareRecordMapper {
     List<FaDeclareRecordDto> selectByExample(Criteria example);
 
     FaDeclareRecord selectByPrimaryKey(String recordId);
+
+    int updateDelByPrimaryKey(FaDeclareRecord faDeclareRecord);
 }

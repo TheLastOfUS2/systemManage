@@ -71,5 +71,17 @@ public class FaDeclareServiceImpl implements FaDeclareService {
         return faDeclareRecord;
     }
 
+    @Override
+    public int updateDelByPrimaryKey(FaDeclareRecord record, String recordDel) {
+        if(!("2").equals(recordDel)){
+            //更改数据状态
+            record.setRecordDel(recordDel);
+            return this.faDeclareRecordMapper.updateDelByPrimaryKey(record);
+        }else{
+            //从数据库中删除
+            return this.faDeclareRecordMapper.deleteByPrimaryKey(record.getRecordId());
+        }
+    }
+
 
 }

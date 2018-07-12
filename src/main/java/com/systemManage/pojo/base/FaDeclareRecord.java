@@ -20,6 +20,16 @@ public class FaDeclareRecord implements Serializable {
     //文件id
     private String fileId;
 
+    private String recordDel;
+
+    public String getRecordDel() {
+        return recordDel;
+    }
+
+    public void setRecordDel(String recordDel) {
+        this.recordDel = recordDel;
+    }
+
     public String getBaseInfoId() {
         return baseInfoId;
     }

@@ -34,7 +34,7 @@
 	   iconCls: 'icon-save', border: true,pagination: true,collapsible: false,pageSize:30, scrollbarSize :0"
        toolbar="#dlg-toolbar" style="overflow: hidden">
     <thead>
-    <input type="hidden" id="checkDel"/>
+    <input type="hidden" id="recordDel"/>
     </thead>
 </table>
 <!-- 基本信息列表 -->
@@ -53,16 +53,16 @@
                 <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true"
                    onclick="edit()">编辑金额</a>
             </td>
-            <%--<td><div class="datagrid-btn-separator"></div></td>--%>
-            <%--<td>--%>
-            <%--<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="del()">删除</a>--%>
-            <%--</td>--%>
-            <%--<td>--%>
-            <%--<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-trash',plain:true" onclick="trash()">回收站</a>--%>
-            <%--</td>--%>
-            <%--<td>--%>
-            <%--<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" id="recovery" onclick="recovery()">恢复</a>--%>
-            <%--</td>--%>
+            <td><div class="datagrid-btn-separator"></div></td>
+            <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="del()">删除</a>
+            </td>
+            <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-trash',plain:true" onclick="trash()">回收站</a>
+            </td>
+            <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" id="recovery" onclick="recovery()">恢复</a>
+            </td>
             <td>
                 <div class="datagrid-btn-separator"></div>
             </td>

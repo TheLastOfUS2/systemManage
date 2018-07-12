@@ -310,7 +310,6 @@
         $('#dlgUpload1').dialog('open');
         //获取上传文件路径
         var fileUrl=$("#uploadFileid").filebox("getValue");
-        console.log(fileUrl);
         //获取文件名
         var strFileName=fileUrl.replace(/^.+?\\([^\\]+?)(\.[^\.\\]*?)?$/gi,"$1");  //正则表达式获取文件名，不带后缀
         //获取文件后缀
@@ -336,7 +335,7 @@
         var baseInfoId=$("#baseInfoId").val();
         var role=$("#role").val();
         console.log("baseInfoId"+$("#baseInfoId").val())
-        alert(baseInfoId);
+        // alert(baseInfoId);
         if(role==3 || role==4){
             queryParam="&baseInfoId="+baseInfoId;
         }

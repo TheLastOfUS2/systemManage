@@ -48,7 +48,7 @@ public class FaCheckController {
     @ResponseBody
     public Object checkList(HttpServletRequest request, HttpServletResponse response) {
         criteria.clear();
-        criteria.put("projectDel", request.getParameter("projectDel"));
+        criteria.put("recordDel", request.getParameter("recordDel"));
         String baseInfoId=request.getParameter("baseInfoId");
 //        if(StringUtil.isNotBlank(baseInfoId)){
 //            criteria.put("baseInfoId",baseInfoId);
@@ -162,5 +162,32 @@ public class FaCheckController {
         return value;
     }
 
+    @RequestMapping("/deleteRecord")
+    public void deleteRecord(HttpServletRequest request, HttpServletResponse response){
+        JSONObject json = null;
+        //判断是删除还是恢复
+        String recordDel=request.getParameter("recordDel");
+        //返回多个id
+        String recordId=request.getParameter("recordId");
+        if(StringUtil.isNotBlank(recordId) && StringUtil.isNotBlank(recordDel)) {
+            String[] strRecordId = recordId.split(",");
+            for(int i=0;i<strRecordId.length;i++){
+                FaDeclareRecord faDeclareRecord = faDeclareService.selectByPrimaryKey(strRecordId[i]);
+                if(faDeclareRecord != null) {
+                    faDeclareService.updateDelByPrimaryKey(faDeclareRecord,recordDel);
+                    json = JsonUtils.setSuccess();
+                    json.put("text", "操作成功");
+                }else {
+                    json = JsonUtils.setError();
+                    json.put("text", "操作失败");
+                }
+            }
+        }else {
+            json = JsonUtils.setError();
+            json.put("text", "系统异常, 请刷新后重试");
+        }
+        JsonUtils.outJsonString(json.toString(), response);
+    }
 }
+
 

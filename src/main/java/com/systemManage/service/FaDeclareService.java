@@ -25,4 +25,6 @@ public interface FaDeclareService {
     int updateAmountById(FaDeclareRecord record);
 
     FaDeclareRecord selectByPrimaryKey(String recordId);
+
+    int updateDelByPrimaryKey(FaDeclareRecord record,String recordDel);
 }

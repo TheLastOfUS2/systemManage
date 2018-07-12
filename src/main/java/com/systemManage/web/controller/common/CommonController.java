@@ -161,6 +161,7 @@ public class CommonController {
                         faDeclareRecord.setRecordType(fiUploadFileInfo.getFileType());
                         faDeclareRecord.setRecordId(StringUtil.getUUID());
                         faDeclareRecord.setFileId(fiUploadFileInfo.getFileId());
+                        faDeclareRecord.setRecordDel("0");
                         int i = faDeclareService.insertFaDeclareRecord(faDeclareRecord);
                     }
                     // 数据库持久化文件信息
@@ -501,6 +502,8 @@ public class CommonController {
                     } else if ("2".equals(recordStatus)) {
                         uploadFile.setStatus("已驳回");
                     }
+                }else {
+                    uploadFileInfo.remove(uploadFile);
                 }
             }
         }

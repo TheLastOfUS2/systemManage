@@ -74,7 +74,7 @@
 		    <input type="hidden" id="projectEndTime" value="<%=projectEndTime%>"/>
 	  	    <!-- 信息类型 -->
 	  	    <input type="hidden" id="projectType1" value="<%=projectType%>"/>
-	  	    <!-- 信息删除状态(当刚进列表时:baseInfoDel=1,点击"删除"按钮,改变数据库状态;当点击回收站后:baseInfoDel=2,点击"删除"按钮,彻底删除数据) -->
+	  	    <!-- 信息删除状态(当刚进列表时:projectDel=1,点击"删除"按钮,改变数据库状态;当点击回收站后:projectDel=2,点击"删除"按钮,彻底删除数据) -->
 	  	    <input type="hidden" id="projectDel"/>
 		  </thead> 
 	</table>

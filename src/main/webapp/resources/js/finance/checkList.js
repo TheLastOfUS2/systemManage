@@ -7,7 +7,7 @@ $(document).ready(function () {
     //查询列表信息
     queryAction(0, '', '');
     //改变数据为删除状态
-    $("#accountDel").val(1);
+    $("#recordDel").val(1);
     //隐藏恢复按钮
     $("div.datagrid-toolbar [id ='recovery']").eq(0).hide();
 
@@ -23,12 +23,12 @@ function doSearch() {
 }
 
 //调用后台方法
-function queryAction(projectDel, getName, getValue) {
+function queryAction(recordDel, getName, getValue) {
     // 获取操作对应的菜单ID
     urls = getPowerMenuId();
     //1.首先获取当前页号和每页显示条数
     $("#dg").datagrid({
-        url: 'faCheck/checkList?projectDel=' + projectDel + "&getName=" + getName + "&getValue=" + getValue + urls,
+        url: 'faCheck/checkList?recordDel=' + recordDel + "&getName=" + getName + "&getValue=" + getValue + urls,
         //加载列表数据
         columns: [[{
             field: 'ck',
@@ -326,6 +326,102 @@ function edit() {
         // });
     } else {
         $.messager.alert('提示信息', '未选中任何记录!', 'info');
+    }
+}
+
+function del(){
+    //获取是在未被删除数据的列表还是已被删除数据的列表
+    // 获取操作对应的菜单ID
+    urls = getPowerMenuId();
+
+    var recordDel=$("#recordDel").val();
+    //返回选中多行
+    var selRow = $('#dg').datagrid('getSelections');
+    if (selRow!=""){
+        var temID="";
+        //批量获取选中行的评估模板ID
+        for (i = 0; i < selRow.length;i++) {
+            if (temID =="") {
+                temID = selRow[i].recordId;
+            } else {
+                temID = selRow[i].recordId + "," + temID;
+            }
+        }
+        var delTitle;
+        if(recordDel==1){
+            delTitle="确认要删除吗?"
+        }else{
+            delTitle="删除后将无法恢复,确认删除吗?"
+        }
+        $.messager.confirm('确认',delTitle,function(r){
+            if (r){
+                $.post('faCheck/deleteRecord?recordDel='+recordDel + urls,{recordId:temID},function(data){
+                    if(data.status == 1){
+                        $('#dg').datagrid('reload');
+                        $.messager.show({
+                            title: '提示',
+                            msg: data.text
+                        });
+                    } else {
+                        $.messager.show({
+                            title: '提示',
+                            msg: data.text
+                        });
+                    }
+                },'json');
+            }
+        });
+    }else{
+        $.messager.alert('提示信息','未选中任何记录!','info');
+    }
+}
+
+function trash(){
+    //查询已删除数据列表
+    queryAction(1);
+    //彻底删除数据
+    $("#recordDel").val(2);
+    //显示恢复按钮
+    $("div.datagrid-toolbar [id ='recovery']").eq(0).show();
+}
+
+function recovery(){
+    //将选中的数据恢复成未删除状态
+    // 获取操作对应的菜单ID
+    urls = getPowerMenuId();
+
+    //返回选中多行
+    var selRow = $('#dg').datagrid('getSelections');
+    if (selRow!=""){
+        var temID="";
+        //批量获取选中行的评估模板ID
+        for (i = 0; i < selRow.length;i++) {
+            if (temID =="") {
+                temID = selRow[i].recordId;
+            } else {
+                temID = selRow[i].recordId + "," + temID;
+            }
+        }
+        $.messager.confirm('确认','确定要恢复吗?',function(r){
+            if (r){
+                $.post('faCheck/deleteRecord?recordDel=0' + urls,{recordId:temID},function(data){
+                    if(data.status == 1){
+                        $('#dg').datagrid('reload');
+                        $.messager.show({
+                            title: '提示',
+                            msg: data.text
+                        });
+                    } else {
+                        $.messager.show({
+                            title: '提示',
+                            msg: data.text
+                        });
+                    }
+                },'json');
+            }
+        });
+    }else{
+        $.messager.alert('提示信息','未选中任何记录!','info');
     }
 }
 
