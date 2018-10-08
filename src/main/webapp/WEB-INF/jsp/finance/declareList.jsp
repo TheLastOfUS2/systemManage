@@ -65,6 +65,9 @@
             <%--<td><div class="datagrid-btn-separator"></div></td>--%>
             <td>
                 <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-xls',plain:true" onclick="excel()">导出申报履历</a>
+            </td>
+                <td>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-xls',plain:true" onclick="excelAll()">导出资金统计</a>
                 </td>
             <td><!-- prompt:'请输入检索关键字', -->
                 <input id="searchboxId" class="easyui-searchbox" data-options="menu:'#mm',searcher:doSearch" style="width:200px"></input>
@@ -149,6 +152,11 @@
 <div id="dlgExcel" class="easyui-dialog" title="系统提示" data-options="iconCls:'icon-save',closed:true" style="width:260px;height:130px;padding:20px;text-align: center">
     文件生成成功,
     <a href='javascript:void(0)' class='easyui-linkbutton' data-options='plain:true' style="width:70px;height:30px;" onclick="exportExcel()">点此下载</a>
+</div>
+
+<div id="dlgExcelAll" class="easyui-dialog" title="系统提示" data-options="iconCls:'icon-save',closed:true" style="width:260px;height:130px;padding:20px;text-align: center">
+    文件生成成功,
+    <a href='javascript:void(0)' class='easyui-linkbutton' data-options='plain:true' style="width:70px;height:30px;" onclick="exportExcelAll()">点此下载</a>
 </div>
 <!-- 导出提示框 -->
 

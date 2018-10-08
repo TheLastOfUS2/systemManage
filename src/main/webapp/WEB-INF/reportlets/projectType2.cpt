@@ -33,6 +33,11 @@
 <O>
 <![CDATA[]]></O>
 </Parameter>
+<Parameter>
+<Attributes name="baseInfoId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
 <Connection class="com.fr.data.impl.NameDatabaseConnection">
@@ -56,6 +61,7 @@ ${if(projectNumber == "",""," and am.project_number like '%" + projectNumber + "
 ${if(baseInfoName == "",""," and bb.base_info_name like '%" + baseInfoName + "%'")}
 ${if(projectTime == "",""," and am.project_time like '%" + projectTime + "%'")}
 ${if(projectStatus == "",""," and am.project_status ='" + projectStatus +"'")}
+${if(baseInfoId == "",""," and am.base_info_id ='" + baseInfoId +"'")} 
 order by am.project_create_time desc 
 ) a  
 left JOIN (SELECT @rownum:=0) co on 1=1
@@ -178,9 +184,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="rowNo"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>
@@ -190,9 +194,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="project_name"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>
@@ -202,11 +204,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="project_type"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
-<Result>
-<![CDATA[SWITCH(project_type,"0","横向","1","纵向","2","国际合作项目")]]></Result>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>
@@ -216,9 +214,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="project_number"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>
@@ -228,9 +224,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="project_source"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>
@@ -240,11 +234,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="project_level"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
-<Result>
-<![CDATA[SWITCH(project_level,"0","国家","1","部","2","省","3","市","4","企事业单位")]]></Result>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>
@@ -254,9 +244,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="base_info_name"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>
@@ -266,9 +254,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="project_time"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>
@@ -278,11 +264,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="project_status"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
-<Result>
-<![CDATA[SWITCH(project_status,"0","在研","1","结项","2","延期（已申请）","3","延期（未申请）")]]></Result>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>
@@ -292,9 +274,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="project_knot_time"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>
@@ -304,9 +284,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="project_approved_outlay"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>
@@ -316,9 +294,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="project_cooperative_unit"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>
@@ -328,9 +304,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="collaborator"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>
@@ -340,9 +314,7 @@ order by rowNo ]]></Query>
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="project_remarks"/>
 <Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
-<Attr divideMode="1"/>
-</RG>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
 <Parameters/>
 </O>
 <PrivilegeControl/>

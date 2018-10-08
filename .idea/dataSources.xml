@@ -34,6 +34,7 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://202.199.162.133:3306/systemManage_db</jdbc-url>
+      <default-dialect>GenericSQL</default-dialect>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

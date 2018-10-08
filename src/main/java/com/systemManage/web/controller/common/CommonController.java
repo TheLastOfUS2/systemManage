@@ -109,9 +109,9 @@ public class CommonController {
                         flag = false;
                     }
                 } else {
-                    if (fileLen > 2097152) {
+                    if (fileLen > 8388608) {
                         result = JsonUtils.setError();
-                        result.put("text", "文件大小限制在2M以内");
+                        result.put("text", "文件大小限制在8M以内");
                         flag = false;
                     }
                 }

@@ -4,6 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.systemManage.common.utils.*;
+import com.systemManage.pojo.base.CommonAccount;
+import com.systemManage.pojo.base.Criteria;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,11 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.systemManage.common.utils.PermissionUtils;
-import com.systemManage.common.utils.StringUtil;
-import com.systemManage.common.utils.WebUtils;
 import com.systemManage.pojo.dto.CommonAccountDto;
 import com.systemManage.service.CommonAccountService;
+
+import java.util.List;
 
 public class AuthenticatorInterceptor implements HandlerInterceptor {
 	
@@ -57,11 +59,30 @@ public class AuthenticatorInterceptor implements HandlerInterceptor {
             }
             //获取当前登录用户信息
             CommonAccountDto account = (CommonAccountDto) session.getAttribute("accountInfo");
+            String token = request.getParameter("token");
             //判断用户是否登录
             if(account == null){
                 // 如果是ajax请求则直接返回false
             	if(request.getHeader("x-requested-with") != null && "XMLHttpRequest".equals(request.getHeader("x-requested-with"))) {
             		return false;
+                }else if (StringUtil.isNotBlank(token)){
+                    if(StringUtil.isNotBlank(token)) {
+                        // 解密
+                        token = SecurityUtil.decryptAES(token);
+                        if(StringUtil.isNotBlank(token)) {
+                            token = token.split("\\|")[0];
+                        }
+                        // 根据用户名密码进行数据确认
+                        Criteria criteria = new Criteria();
+                        criteria.put("accountId", token);
+                        CommonAccount commonAccount = accountService.selectByPrimaryKey(token);
+                        if (commonAccount!=null) {
+                            return true;
+                        }
+                    } else {
+                            logger.info("--------------- 登录失败, 用户输入的用户名或密码错误  ----------------");
+                            WebUtils.toLogin(response);
+                    }
                 }else {
             	    // Session超时, 重定向到登录窗口页面, 调用其他网站链接
                     logger.info("操作失败, 用户名未登录！");
@@ -77,6 +98,9 @@ public class AuthenticatorInterceptor implements HandlerInterceptor {
                 // 如果访问来自进入首页, 则通过
                 if(requestMappingName.contains("main") ) {
                 	return true;
+                }
+                if(requestMappingName.contains("toIndexManage") ) {
+                    return true;
                 }
                 // 获取当前请求的参数
                 String queryString = request.getQueryString();

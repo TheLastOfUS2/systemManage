@@ -441,18 +441,20 @@
 		var getName= $('#searchboxId').searchbox('getName');
 		//获取搜索框中的内容
 		var getValue= $('#searchboxId').searchbox('getValue');
+		var baseInfoId = $('#baseInfoId').val()
+		console.log("baseInfoId:"+baseInfoId);
 		getValue=getValueFunction(getName, getValue);
 		// 院内项目
 		if(projectType==0){
-			var url = "ReportServer?reportlet=projectType0.cpt&projectType=" + projectType + "&" + getName + "=" + getValue + "&format=excel&extype=simple&__filename__=" + cjkEncode("院内项目");
+			var url = "ReportServer?reportlet=projectType0.cpt&projectType=" + projectType +"&baseInfoId=" + baseInfoId + "&" + getName + "=" + getValue + "&format=excel&extype=simple&__filename__=" + cjkEncode("院内项目");
 			window.open(url);
 		// 纵向项目
 		}else if(projectType==1){
-			var url = "ReportServer?reportlet=projectType1.cpt&projectType=" + projectType + "&" + getName + "=" + getValue + "&format=excel&extype=simple&__filename__=" + cjkEncode("纵向项目");
+			var url = "ReportServer?reportlet=projectType1.cpt&projectType=" + projectType +"&baseInfoId=" + baseInfoId+"&" + getName + "=" + getValue + "&format=excel&extype=simple&__filename__=" + cjkEncode("纵向项目");
 			window.open(url);
 		// 国际合作项目
 		}else if(projectType==2){
-			var url = "ReportServer?reportlet=projectType2.cpt&projectType=" + projectType + "&" + getName + "=" + getValue + "&format=excel&extype=simple&__filename__=" + cjkEncode("国际合作项目");
+			var url = "ReportServer?reportlet=projectType2.cpt&projectType=" + projectType+"&baseInfoId=" + baseInfoId + "&" + getName + "=" + getValue + "&format=excel&extype=simple&__filename__=" + cjkEncode("国际合作项目");
 			window.open(url);
 		}
 	}

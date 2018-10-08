@@ -196,9 +196,19 @@
 	function excel(){
 		$("#dlgExcel").dialog("open");
 	}
-	
+
+    function excelAll(){
+        $("#dlgExcelAll").dialog("open");
+    }
+
 	//导出excle
 	function exportExcel(){
+        var baseInfoId=$("#baseInfoId").val();
+        var paramForExcel = "";
+        var role=$("#role").val();
+        if(role==3 || role==4){
+            paramForExcel="&baseInfoId="+baseInfoId;
+        }
 		$("#dlgExcel").dialog("close");
 		//获取搜索的name值
 		var getName= $('#searchboxId').searchbox('getName');
@@ -206,9 +216,27 @@
 		var getValue= $('#searchboxId').searchbox('getValue');
 		getValue=getValueFunction(getName, getValue);
 		
-		var url = "ReportServer?reportlet=faDeclareRecord.cpt&" + getName + "=" + getValue + "&format=excel&extype=simple&__filename__=" + cjkEncode("个人报销履历列表");
+		var url = "ReportServer?reportlet=faDeclareRecord.cpt&" + getName + "=" + getValue +paramForExcel+ "&format=excel&extype=simple&__filename__=" + cjkEncode("个人报销履历列表");
 		window.open(url);
 }
+
+    function exportExcelAll(){
+        var baseInfoId=$("#baseInfoId").val();
+        var paramForExcel = "";
+        var role=$("#role").val();
+        if(role==3 || role==4){
+            paramForExcel="&baseInfoId="+baseInfoId;
+        }
+        $("#dlgExcelAll").dialog("close");
+        //获取搜索的name值
+        var getName= $('#searchboxId').searchbox('getName');
+        //获取搜索框中的内容
+        var getValue= $('#searchboxId').searchbox('getValue');
+        getValue=getValueFunction(getName, getValue);
+
+        var url = "ReportServer?reportlet=faGetAll.cpt&" + getName + "=" + getValue +paramForExcel+ "&format=excel&extype=simple&__filename__=" + cjkEncode("个人报销履历列表");
+        window.open(url);
+    }
 	function getValueFunction(name, value){
         return value;
     }
