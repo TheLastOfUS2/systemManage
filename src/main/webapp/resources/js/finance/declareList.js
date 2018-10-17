@@ -234,7 +234,7 @@
         var getValue= $('#searchboxId').searchbox('getValue');
         getValue=getValueFunction(getName, getValue);
 
-        var url = "ReportServer?reportlet=faGetAll.cpt&" + getName + "=" + getValue +paramForExcel+ "&format=excel&extype=simple&__filename__=" + cjkEncode("个人报销履历列表");
+        var url = "ReportServer?reportlet=faGetAll.cpt&" + getName + "=" + getValue +paramForExcel+ "&format=excel&extype=simple&__filename__=" + cjkEncode("个人资金统计列表");
         window.open(url);
     }
 	function getValueFunction(name, value){
